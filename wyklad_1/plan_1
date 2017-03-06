@@ -1,0 +1,151 @@
+Mój własny skaner systemu plików
+
+1. Przywitanie
+2. Przedstawiene Dominiki, Kuby, Krzyśka i siebie.
+3. Chwilę pogadać o firmie co robimy, gdzie i że jest fajnie.
+4. Jaki jest ogólny cel wszystkich zajęć. 
+5. Jaki jest cel tych zajęć:
+    - Napisanie własnego skanera plików: 
+        * wyszukanie duplikatów plików
+        * ma za zadanie policzyć ilość miejsca zajmowanego przez każdy folder
+    - ustalenie poziomu zajęć (jeśli ktoś, nie łapie to będzie musiał więcej
+     pracy poświęcić)
+    - przećwiczenie części operacji na plikach
+    - użycie funkcji hashujących (md5, sha, ...)
+    - przećwiczenie słowników, zbiorów, tupli, list?
+    
+#sha1 different files collision:
+https://shattered.it/static/shattered-1.pdf
+https://shattered.it/static/shattered-2.pdf
+
+
+file_hasher.py******************************************************************
+import hashlib
+# https://en.wikipedia.org/wiki/Pigeonhole_principle
+# https://pl.wikipedia.org/wiki/Zasada_szufladkowa_Dirichleta
+
+
+def get_hash(f_path, mode='md5'):
+    h = hashlib.new(mode)
+    # TODO: PRACA DOMOWA: Nie czytać całego pliku na raz tylko po kawałku
+    f = open(f_path, 'rb') # otwiera plik w funkcji hashującej, co z obsługą
+    # błedów?
+    h.update(f.read()) # czyta cały plik na raz!
+    hash_text = h.hexdigest()
+    f.close()
+    return hash_text
+    
+#print(get_hash('plik_testowy'))
+#print(get_hash('sha1_collisions/shattered-1.pdf', mode='sha1'))
+#print(get_hash('sha1_collisions/shattered-2.pdf', mode='sha1'))
+
+# eb63071881718ed66bb75ce670e65b9e
+# eb63071881718ed66bb75ce670e65b9e
+
+
+duplicate_finder.py*************************************************************
+import os
+
+from file_hasher import get_hash
+
+
+def duplicate_finder(topdir=None):
+    if topdir is None:
+        topdir = os.getcwd()
+    data = {}
+    hashed_files = set()
+    hashes = {}
+    for root, dirs, files in os.walk(topdir):
+        #print(root, dirs, files)
+        for single_file in files:
+            f_path = os.path.join(root, single_file)
+            size = os.path.getsize(f_path)
+            size_list = data.get(size, [])
+            size_list.append(f_path)
+            if len(size_list) > 1:
+                for file_path in size_list:
+                    if file_path not in hashed_files:
+                        f_hash = get_hash(file_path)
+                        size_hash_list = hashes.get(f_hash, [])
+                        size_hash_list.append(file_path)
+                        hashes[f_hash] = size_hash_list
+                        if len(size_hash_list) > 1:
+                            print(
+                                'hash {} collision for following'
+                                'files:\n\t{}\n'.format(
+                                    f_hash, '\n\t'.join(size_hash_list)
+                                )
+                            )
+            data[size] = size_list
+    # TODO: PRACA DOMOWA: w tym miejscu porównać binarnie pliki, ponieważ
+    # identyczne wartości hash nie znaczą, że pliki są identyczne
+    # podpowiedź: https://docs.python.org/3.5/library/filecmp.html
+    return data, hashes
+    
+def format_dict(my_dict):
+    keys = list(my_dict.keys())
+    keys.sort()
+    entry_format = '\t{}: {}'
+    entry_lines = (entry_format.format(k, my_dict[k]) for k in keys)
+    return '{}\n{}\n{}'.format('{', '\n'.join(entry_lines), '}')
+        
+        
+data, hashes = duplicate_finder()
+print(format_dict(data))
+print(format_dict(hashes))
+
+file_walker_cwiczenia.py********************************************************
+import os
+
+def sample_directory_walker(new_cwd=None):
+    old_cwd = os.getcwd()
+    if new_cwd:
+        os.chdir(new_cwd)
+    # to nam nie daje wszystkich wyników (pomija foldery)
+    for root, dirs, files in os.walk(os.getcwd(), topdown=False):
+        print('{}, {}, {}\n'.format(root, dirs, files))
+    if new_cwd:
+        os.chdir(old_cwd)
+        
+# sample_directory_walker('/home/marcin/kursy')
+def format_sizes(sizes):
+    keys = list(sizes.keys())
+    keys.sort()
+    entry_format = '\t{}: {}'
+    entry_lines = (entry_format.format(k, sizes[k]) for k in keys)
+    return '{}\n{}\n{}'.format('{', '\n'.join(entry_lines), '}')
+
+
+def my_directory_walker_with_size_counting(topdir=None):
+    if topdir is None:
+        topdir = os.getcwd()
+    sizes = {topdir: 0}
+    root_stack = []
+    current_root_size = 0
+    
+    def inner_walker(new_topdir):
+        root_stack.append(new_topdir)
+        new_topdir_path = os.path.join(*root_stack)
+        # TODO: PRACA DOMOWA: dodać obsługę błędów
+        entries = os.scandir(new_topdir_path)
+        size = 0
+        for entry in entries:
+            if entry.is_dir(follow_symlinks=False):
+                entry_size = inner_walker(entry.name)
+                sizes[os.path.join(*root_stack)] = entry_size
+                size += entry_size
+                root_stack.pop()
+            elif entry.is_file(follow_symlinks=False):
+                sizes[os.path.join(*root_stack, entry.name)] = entry.stat().st_size
+                size += entry.stat().st_size # os.path.getsize
+        return size
+    inner_walker(topdir)
+    return sizes
+    
+
+sizes = my_directory_walker_with_size_counting('/home/marcin/kursy')
+#sizes = my_directory_walker_with_size_counting('/home/marcin')
+
+print(format_sizes(sizes))
+print(len(sizes))
+
