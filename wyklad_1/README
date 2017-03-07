@@ -1,0 +1,16 @@
+Praca domowa z 1 zajęć:
+
+1. W pliku `duplicate_finder.py` porównać binarnie pliki,
+ ponieważ identyczne wartości hash nie znaczą, że pliki są identyczne.
+podpowiedź: https://docs.python.org/3.5/library/filecmp.html
+
+2. W pliku `file_hasher.py`:
+    - użyć with
+    - dodać obsługę błędów
+    - nie czytać całego pliku w całości tylko w kawałkach
+
+3. W pliku `file_walker.py`:
+    - dodać obsługę błędów
+    - kod z wykładu nie liczy ile miejca jest zajęte przez topdir trzeba to poprawić
+    
+Rozwiązania proszę przysyłać na adres: pythonlevelup@daftcode.pl

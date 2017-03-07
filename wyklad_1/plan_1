@@ -1,10 +1,7 @@
 Mój własny skaner systemu plików
 
-1. Przywitanie
-2. Przedstawiene Dominiki, Kuby, Krzyśka i siebie.
-3. Chwilę pogadać o firmie co robimy, gdzie i że jest fajnie.
-4. Jaki jest ogólny cel wszystkich zajęć. 
-5. Jaki jest cel tych zajęć:
+
+Jaki jest cel tych zajęć:
     - Napisanie własnego skanera plików: 
         * wyszukanie duplikatów plików
         * ma za zadanie policzyć ilość miejsca zajmowanego przez każdy folder
@@ -18,6 +15,15 @@ Mój własny skaner systemu plików
 https://shattered.it/static/shattered-1.pdf
 https://shattered.it/static/shattered-2.pdf
 
+https://github.com/daftcode/zajecia_python_mini_edycja4
+https://en.wikipedia.org/wiki/MD5
+https://en.wikipedia.org/wiki/SHA-1
+https://en.wikipedia.org/wiki/Pigeonhole_principle
+https://docs.python.org/3.5/library/os.html
+https://docs.python.org/3.5/library/os.html#os.walk
+https://docs.python.org/3.5/library/os.html#os.scandir
+https://docs.python.org/3.5/library/os.html#os.DirEntry
+https://docs.python.org/3.5/library/os.html#os.listdir
 
 file_hasher.py******************************************************************
 import hashlib
