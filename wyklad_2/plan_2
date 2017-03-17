@@ -1,0 +1,44 @@
+VIRTUALENV
+
+SCOPE
+widoczność zmiennuych w python na szybko, żeby zrozumieli o co chodzi z closure
+I dlaczego jest to takie ważne i w ogóle ŁAŁ.
+
+CLOSURE/DOMKNIĘCIE
+musi być przed dekoratorami, bo one to wykorzystują
+
+FUNCTION AS FIRST CLASS OBJECT/FUNKCJE JAKO OBIEKTY PIERWSZEJ KATEGORII
+na szybko pokazać, że funkcjami można manipulować jak normalnymi obiektami
+
+DEKORATORY
+- funkcja to obiekt
+- funkcja może zwracać funkcję wewnętrzną
+- dekorator metoda zwracania funkcji wewnętrznej
+- dekorator metodą @
+- 2 dekoratory jeden nad drugim
+- jak to się rozkłada na zapis funkcja od funkcji od funkcji (chodzi o kolejność wywoływania)
+- pokazanie, że niektóre parametry funkcji zostają nadpisane przez dekorator
+    (np funkcja.__name__)
+- wraps z functools roozwiązuje problem
+- ale zanim pokażę wraps lepiej pokazać jak samemu go napisać
+- argumenty dla dekoratora - czy może i jeśli tak to w jaki sposób może je przyjmować
+- dekorator jako klasa
+- dekorować można nie tylko funkcje, ale też metody i klasy
+
+# TODO: link do dokumentacji functools.wraps
+
+kolejność przykładów:
+01_simplest_decorator_no_@.py
+02_simplest_decorator_with_@.py
+03_simple_decorator_no_@.py
+04_simple_decorator_with_@.py
+05_simple_decorator_no_@_decorated_function_with_args.py
+06_simple_decorator_with_@_decorated_function_with_args.py
+07_two_nested_decorators.py
+08_two_nested_decorators_name_problem.py
+09_two_nested_decorators_name_problem_wraps.py
+10_decorator_with_arguments.py
+11_class_as_a_decorator.py
+12_call_counter.py
+
+
