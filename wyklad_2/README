@@ -1,0 +1,42 @@
+Praca domowa z drugich zajęć:
+Rozwiązania proszę zawrzeć w pliku `decorators.py`
+
+zadanie 1
+    Dekorator deprecated_1
+    Napisać dekorator wypisujący na stderr komunikat:
+        "Funkcja `NAZWA_UDEKOROWANEJ_FUNKCJI` jest przestarzała"
+    komunikat powinien pojawić się w momencie importu modułu z udekorowaną funkcją.
+    Nazwa dekoratora: `deprecated_1`
+    
+zadanie 2
+    Dekorator deprecated_2
+    Napisać dekorator wypisujący na stderr komunikat:
+        "Funkcja `NAZWA_UDEKOROWANEJ_FUNKCJI` jest przestarzała i zostanie usunięta w następnej wersji"
+    komunikat powinien pojawić się przy każdym użyciu udekorowanej funkcji.
+    Nazwa dekoratora: `deprecated_2`
+    
+zadanie 3
+    Dekorator deprecated_3
+    Napisać dekorator wypisujący na stderr komunikat:
+        "Funkcja `NAZWA_UDEKOROWANEJ_FUNKCJI` jest przestarzała i zostanie usunięta w następnej wersji. Numer wywołania: NR_WYWOŁANIA"
+    komunikat powinien pojawić się przy każdym użyciu udekorowanej funkcji.
+    Liczba wywołań udekorowanych funkcji powinna być zapisana wewnątrz dekoratora i być dostępna spoza dekoratora.
+    Nazwa dekoratora: `deprecated_3`
+    Sposób "dostania" się do wywołań z "zewnątrz":
+        deprecated_3.calls[NAZWA_UDEKOROWANEJ_FUNKCJI]
+        
+zadanie 4
+    dekorator my_timeit
+    Napisać dekorator mierzący czas wykonania dekorowanej funkcji.
+    Dodatkowo po skończeniu wykonywania dekorowanej funkcji powinien zostać
+    wypisany komunikat na stdout:
+        "Czas wykonania `NAZWA_UDEKOROWANEJ_FUNKCJI`: CZAS ms"
+    Nazwa dekoratora: `my_timeit`
+    
+zadanie_5 (BONUS)
+    Tak rozwiązać poprzednie zadania, żeby bez problemu można było użyć
+    dowolnej kombinacji (i dowolnej kolejności) dekoratorów z poprzednich zadań.
+
+    
+Rozwiązania proszę przysyłać na adres: pythonlevelup at daftcode.pl do 30.03.2017 23:59:59
+Temat wiadomości: [PythonLevelUp] praca dmowa 2 IMIĘ NAZWISKO
