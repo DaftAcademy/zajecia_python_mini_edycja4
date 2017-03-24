@@ -1,14 +1,52 @@
 VIRTUALENV
 
+- zewnętrzny virtualenv: https://virtualenv.pypa.io/en/stable/
+- wbudowany w pythona: https://docs.python.org/3.5/library/venv.html
+
+- windows
+    http://environmentvariables.org/PathExt
+
+    D:\programowanie\flask_virtualenv>python3 -m venv D:\programowanie\flask_virtualenv
+
+    D:\programowanie\flask_virtualenv>Scripts\activate.bat
+    
+    (flask_virtualenv) D:\programowanie\flask_virtualenv>pip3 install Flask
+    
+- *nix
+    mkdir flask_venv
+    python3 -m venv flask_venv
+    pip3 install Flask
+
+
+FLASK
+http://flask.pocoo.org/
+- windows:
+    (flask_virtualenv) D:\programowanie\flask_virtualenv>python3 hello_flask_world.py
+    
+- *nix:
+    python3 hello_flask_world.py
+
 SCOPE
-widoczność zmiennuych w python na szybko, żeby zrozumieli o co chodzi z closure
+widoczność zmiennych w python na szybko, żeby zrozumieli o co chodzi z closure
 I dlaczego jest to takie ważne i w ogóle ŁAŁ.
+- global
+- nonlocal
+- obiekty mutable
+
+    global_example.py
+
 
 CLOSURE/DOMKNIĘCIE
 musi być przed dekoratorami, bo one to wykorzystują
 
+    closure_example.py
+    nonlocal_example.py
+    mutable_example.py
+
 FUNCTION AS FIRST CLASS OBJECT/FUNKCJE JAKO OBIEKTY PIERWSZEJ KATEGORII
 na szybko pokazać, że funkcjami można manipulować jak normalnymi obiektami
+    
+    function_attributes_example.py
 
 DEKORATORY
 - funkcja to obiekt
@@ -28,6 +66,12 @@ DEKORATORY
 # TODO: link do dokumentacji functools.wraps
 
 kolejność przykładów:
+hello_flask_world.py
+global_example.py
+closure_example.py
+nonlocal_example.py
+mutable_example.py
+function_attributes_example.py
 01_simplest_decorator_no_@.py
 02_simplest_decorator_with_@.py
 03_simple_decorator_no_@.py
