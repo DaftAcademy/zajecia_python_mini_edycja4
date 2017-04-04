@@ -1,0 +1,71 @@
+Zadanie domowe 3 - Flask
+
+Stwórz we Flasku aplikację, która dla wybranego katalogu wyświetli jego statystyki: nazwę, wielkość, link do statystyk rodzica (jeżeli aktualnie wyświetlany katalog nie jest rootem) oraz listę dzieci, tzn. katalogów oraz plików, które znajdują się w wyświetlanym katalogu. Dla każdego pliku i katalogu z listy dzieci powinna być wyświetlona także jego wielkość. Nazwy katalogów powinny byc linkami. 
+
+Statystyki powinny być wyliczone na podstawie funkcji my_directory_walker_with_size_counting z pliku file_walker.py https://github.com/daftcode/zajecia_python_mini_edycja4/blob/master/wyklad_2/rozwiazania_pracy_domowej/file_walker.py . Na potrzeby tego zadania konieczne jest zmodyfikowanie tej funkcji w taki sposób, by jej wynik odzwierciedlał strukturę katalogów. Funkcja ta powinna zostać odpalona jeden raz - przy startowaniu aplikacji oraz powinna zbadać katalog "test dir" znajdujący się w katalogu z rozwiązaniem zadania.
+
+W rozwiązaniu powinny się znaleźć przynajmniej następujące pliki:
+/application.py - plik zawierający aplikację będącą rozwiązaniem zadania
+/file_walker.py - plik zawierający zmienioną funkcję my_directory_walker_with_size_counting
+/test dir - katalog dla którego odpalone ma zostać sprawdzenie za pomocą metody my_directory_walker_with_size_counting
+
+Po uruchomieniu aplikacji statystyki mają być dostępne pod adresem /stats/sciezka_do_katalogu, np.
+/stats/test%20dir/test%20child%202.
+
+Statystyki dla każdego z katalogów powinny być widoczne w następującej formie:
+
+```
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Statystyki dla test dir/test child 2</title>
+</head>
+<body>
+    <h1>Nazwa: test dir/test child 2</h1>
+    <h2>Wielkość: 32 B</h2>
+    <h2>Rodzic: <a href="/stats/test%20dir">
+                    test dir
+                </a>
+    </h2>
+    <h2>Dzieci:</h2>
+    <ul>
+        <li>
+            <a href="/stats/test%20dir/test%20child%202/empty%20dir">
+                test dir/test child 2/empty dir : 0 B
+            </a>
+        </li>
+        <li>test dir/test child 2/file3.txt : 12 B</li>
+        <li>test dir/test child 2/file4.txt : 20 B</li>
+    </ul>
+</body>
+</html>
+```
+
+Dodatkowe założenia:
+Aplikacja ma obsługiwać jedynie metodę GET.
+Dodatkowo, URL /stats ma robić przekierowanie na statystyki roota (np. /stats/test%20dir)
+Linki mają być url-encoded tzn., znaki takie jak spacja mają być zamienione na swoje odpowiedniki w postaci %XX, np. odpowiednik spacji to %20.
+W przypadku podania niestniejącej ścieżki np. /stats/niestniejacy_katalog aplikacja ma zwracać błąd 404.
+
+Przydatne linki:
+Umieszczanie linków w template'ach: http://stackoverflow.com/questions/11124940/creating-link-to-an-url-of-flask-app-in-jinja2-template
+If wewnątrz szablonu: http://jinja.pocoo.org/docs/2.9/templates/#if
+Przekierowywanie: http://flask.pocoo.org/docs/0.12/api/#flask.redirect
+Zwracanie błędów: http://flask.pocoo.org/docs/0.12/api/#flask.abort
+
+Zadanie bonusowe:
+Stwórz dodatkowy template, który będzie zawierał link do statystyk roota i który będzie wyświetlany w przypadku błędu 404. Na podstawie: http://flask.pocoo.org/docs/0.12/patterns/errorpages/
+
+```
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <title>Nie znaleziono strony</title>
+</head>
+<body>
+    <a href="/stats/test%20dir">
+        Wyświetl statystyki dla roota
+    </a>
+</body>
+</html>
+```

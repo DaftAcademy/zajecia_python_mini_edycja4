@@ -1,0 +1,25 @@
+1. Dekoratory
+    - wraps
+    - dekorator z argumentami
+    - klasa jako dekorator
+
+2. hello flask world
+    - upewnienie się, ze wszystkim działa flask
+    
+3. Flask POST
+    - jak obsłużyć POST
+    - po co?
+    
+4. flask templatki
+    - zwracanie stringów jest passe
+    - primitywna (wszystko na sztywno)
+    - ze zmienną
+    - z pętlą po słowniku
+    - z pętlą po posortowanym słowniku
+    
+5. flask routing
+    - prymitywny (wszystko na sztywno)
+    - z intem
+    - z całą ścieżką
+
+
