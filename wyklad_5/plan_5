@@ -1,0 +1,11 @@
+SQLAlchemy
+ - kilka prostych tabel
+ - dodanie relacji
+ - backref
+ - pokazanie jak querować
+ - jak zrobić join
+ - relacja z dwoma kluczami
+ - jak zrobić join z dwoma kluczami 
+ 
+ 
+Zacząć od tabeli items

@@ -1,0 +1,19 @@
+praca domowa:
+
+1. Zapisać wyniki ze skryptu nbp_asynchronicznie do bazy sqlite.
+Bazę trzeba samemu zaprojektować i napisać 2-3 zdania czemu tak.
+
+2. Praca z legacy code.
+Historyjka: Pracujecie w jakiejś firmie.
+Przełożony zleca Wam zadanie "naprawienia" skryptu: skrypt_do_flag_praca_domowa.py.
+Autor skryptu już w firmie nie pracuje.
+Jedyne co wiecie to, ze skrypt pobiera obrazki flag i nazwy krajów z Wikipedii.
+
+Skrypt jest napisany w python 2.7, trzeba go sportować do python 3.5.
+Zastosować dobre praktyki (np PEP8, ale nie tylko).
+Wyniki skryptu powinny być zapisywane do bazy sqlite, obrazki do jednego folderu.
+Bazę musicie zaprojektować sami.
+
+UWAGA: nie obciążajcie wikipedii nadmiernymi requestami, pracujcie na
+ pojedyńczych krajach, nie na całej liście, (Albo lokalnie serwujcie sobie te
+ strony).
